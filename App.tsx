@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import { Bars3CenterLeftIcon, BellIcon } from "react-native-heroicons/solid";
+import GameCard from "./src/components/GameCard/GameCard";
 import GradientCategory from "./src/components/GradientCategory/GradientCategory";
 import { storeColors } from "./src/theme";
 
@@ -19,6 +20,37 @@ const categories = [
   "Racing",
   "Education",
   "Others",
+];
+
+const featuredGames = [
+  {
+    id: 1,
+    title: "Zooba",
+    image: require("./assets/images/zooba.png"),
+    downloads: "200k",
+    stars: 4,
+  },
+  {
+    id: 2,
+    title: "Subway Surfer",
+    image: require("./assets/images/subway.png"),
+    downloads: "5M",
+    stars: 4,
+  },
+  {
+    id: 3,
+    title: "Free Fire",
+    image: require("./assets/images/freeFire.png"),
+    downloads: "100M",
+    stars: 3,
+  },
+  {
+    id: 4,
+    title: "Alto's Adventure",
+    image: require("./assets/images/altosAdventure.png"),
+    downloads: "20k",
+    stars: 4,
+  },
 ];
 
 export default function App() {
@@ -41,7 +73,7 @@ export default function App() {
           </View>
 
           {/* categories */}
-          <View className="mt-3 space-y-3">
+          <View className="mt-3 space-y-4">
             <Text
               style={{ color: storeColors.text }}
               className="ml-4 text-3xl font-bold"
@@ -69,6 +101,23 @@ export default function App() {
                     );
                   }
                 })}
+              </ScrollView>
+            </View>
+          </View>
+
+          {/* featured row */}
+          <View className="mt-3 space-x-4">
+            <Text
+              style={{ color: storeColors.text }}
+              className="ml-4 font-bold"
+            >
+              Featured Games
+            </Text>
+            <View className="pl-4">
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {featuredGames.map((game, index) => (
+                  <GameCard key={index} game={game} />
+                ))}
               </ScrollView>
             </View>
           </View>
