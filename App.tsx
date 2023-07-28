@@ -1,18 +1,14 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
+  Image
 } from "react-native";
-import {
-  ArrowDownTrayIcon,
-  Bars3CenterLeftIcon,
-  BellIcon,
-} from "react-native-heroicons/solid";
+import { ArrowDownTrayIcon, Bars3CenterLeftIcon, BellIcon } from "react-native-heroicons/solid";
 import GameCard from "./src/components/GameCard/GameCard";
 import GradientCategory from "./src/components/GradientCategory/GradientCategory";
 import { storeColors } from "./src/theme";
@@ -31,28 +27,28 @@ const featuredGames = [
   {
     id: 1,
     title: "Zooba",
-    image: require("./assets/images/zooba.png"),
+    image: require("./assets/zooba.png"),
     downloads: "200k",
     stars: 4,
   },
   {
     id: 2,
     title: "Subway Surfer",
-    image: require("./assets/images/subway.png"),
+    image: require("./assets/subway.png"),
     downloads: "5M",
     stars: 4,
   },
   {
     id: 3,
     title: "Free Fire",
-    image: require("./assets/images/freeFire.png"),
+    image: require("./assets/freeFire.png"),
     downloads: "100M",
     stars: 3,
   },
   {
     id: 4,
     title: "Alto's Adventure",
-    image: require("./assets/images/altosAdventure.png"),
+    image: require("./assets/altosAdventure.png"),
     downloads: "20k",
     stars: 4,
   },
@@ -62,45 +58,45 @@ const actionGames = [
   {
     id: 1,
     title: "Shadow Fight",
-    image: require("./assets/images/shadowFight.png"),
+    image: require("./assets/shadowFight.png"),
     downloads: "20M",
     stars: 4.5,
   },
   {
     id: 2,
     title: "Valor Arena",
-    image: require("./assets/images/valorArena.png"),
+    image: require("./assets/valorArena.png"),
     downloads: "10k",
     stars: 3.4,
   },
   {
     id: 3,
     title: "Frag",
-    image: require("./assets/images/frag.png"),
+    image: require("./assets/frag.png"),
     downloads: "80k",
     stars: 4.6,
   },
   {
     id: 4,
     title: "Zooba Wildlife",
-    image: require("./assets/images/zoobaGame.png"),
+    image: require("./assets/zoobaGame.png"),
     downloads: "40k",
     stars: 3.5,
   },
   {
     id: 4,
     title: "Clash of Clans",
-    image: require("./assets/images/clashofclans.png"),
+    image: require("./assets/clashofclans.png"),
     downloads: "20k",
     stars: 4.2,
   },
 ];
 
 export default function App() {
-  const [activeCategory, setActiveCategory] = useState("Action");
+  const [activeCategory, setActiveCategory] = useState("");
   const [selectedGame, setSelectedGame] = useState(null);
 
-  function onPress(category: (typeof categories)[number]) {
+  function onPress(category: string) {
     setActiveCategory(category);
   }
   function onPressGame(id: number) {
@@ -135,7 +131,7 @@ export default function App() {
               >
                 {categories.map((category) => {
                   if (category === activeCategory) {
-                    <GradientCategory text={category} />;
+                    return <GradientCategory text={category} />;
                   } else {
                     return (
                       <TouchableOpacity
@@ -156,7 +152,7 @@ export default function App() {
           <View className="mt-3 space-x-4">
             <Text
               style={{ color: storeColors.text }}
-              className="ml-4 font-bold"
+              className="ml-4 mb-3 font-bold"
             >
               Featured Games
             </Text>
@@ -171,7 +167,7 @@ export default function App() {
 
           {/* top action games */}
           <View className="mt-3">
-            <View classname="flex-row justify-between items-center pr-4 mb-2">
+            <View className="flex-row justify-between items-center pr-4 mb-2">
               <Text
                 style={{ color: storeColors.text }}
                 className="ml-4 font-bold"
@@ -183,7 +179,7 @@ export default function App() {
               </TouchableOpacity>
             </View>
             <ScrollView
-              style={{ height: 320 }}
+              style={{ height: 360 }}
               showsVerticalScrollIndicator={false}
             >
               {actionGames.map((game, index) => {
@@ -191,7 +187,6 @@ export default function App() {
                   game.id === selectedGame
                     ? "rgba(255,255,255,0.4)"
                     : "transparent";
-
                 return (
                   <TouchableOpacity
                     className="mx-4 p-2 mb-2 flex-row rounded-3xl"
@@ -213,10 +208,9 @@ export default function App() {
                         {game.title}
                       </Text>
                       <View className="flex-row space-x-3">
-                        {" "}
                         <View className="flex-row gap-1">
                           <Image
-                            className="w-4 h4 opacity-80"
+                            className="w-4 h-4 opacity-80"
                             source={require("./assets/fullStar.png")}
                           />
                           <Text className="text-xs text-gray-700">

@@ -23,7 +23,7 @@ export default function GameCard({ game }: IProps) {
   }
 
   return (
-    <View>
+    <View className="mr-3">
       <Image source={game.image} className="w-80 h-60 rounded-3xl" />
       <LinearGradient
         colors={["transparent", "rgba(0, 0, 0, 0.6)"]}
@@ -44,7 +44,7 @@ export default function GameCard({ game }: IProps) {
         <View className="space-y-1">
           <StarRating
             disabled
-            starSize="15"
+            starSize={15}
             containerStyle={{ width: 90 }}
             maxStars={5}
             rating={game.stars}
